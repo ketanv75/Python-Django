@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% csrf_token %}
+
+    <div class="page_main flex_prop">
+        <div class="page_head">
+            <h1> Display the uploaded file</h1>
+        </div>
+
+        <h2 class="page_head-small">File content</h2>
+        <div class="table_disp">{{ dataframe.to_html | safe }}</div>
+
+        <h2 class="page_head-small">Please select dependent variable</h2>
+
+        <form class="flex_prop" enctype = "multipart/form-data" action = "fieldSelection" method = "POST">
+            {% csrf_token %}
+            <div class="f_list">
+                {% for header in headers %}
+                    <label for="{{header}}" class="radio_container">{{ header}}
+                        <input type="radio" id="{{ header }}" name="radio" value="{{ header }}">
+                        <span class="checkmark"></span>
+                    </label>
+                {% endfor %}
+            </div>
+            <input class="btn btn-small" type="submit" value="submit">
+        </form>
+
+        <!-- <a class="btn btn-big" href="fieldSelection">To Fields Selection</a> -->
+
+    </div>
+{% endblock content %}
