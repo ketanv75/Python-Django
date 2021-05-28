@@ -4,6 +4,7 @@ import pandas as pd
 import os
 # from static.scripts.regression import simpleLinear
 from static.scripts.regression import simpleLinear, multipleLinear, polynomial
+from static.scripts.classification import knn, kernal_svm, logistic, naive_bayes, svm
 
 # from static.scripts import readcsv
 from csvApp.models import dataFields
@@ -59,17 +60,32 @@ def displayFile(request):
 # Stored in model - - dataFields.y_field
 def fieldSelection(request):
     context={}
+    temp_csv_file=os.getcwd() + "\\temp_files\\tempcsv.csv"
+    df = pd.read_csv(temp_csv_file)
+    print(df.columns)
 
     if request.method == 'POST':
         
         y_field = request.POST.get("radio")
         print(y_field)
 
+        x_fields = request.POST.getlist('chkbox')
+        print(x_fields)
+
         context = {
             'Y_field' : y_field,
+            'x_fields' : x_fields
         }
         dataFields.y_field = y_field
+        dataFields.x_fields = x_fields
 
+        print(dataFields.x_fields)
+    
+        # for col in df.columns:
+        #     colname = col + '_chk'
+        #     print(request.POST.get(colname))
+
+        
     return render(request, 'modelSelect.html', context)
 
 # Select the Model Type Regression / Clasification
@@ -95,6 +111,7 @@ def modelNameSelection(request):
         modelName = request.POST.get("radio")
         dataFields.modelName = modelName
 
+        print(modelName)
         # print(dataFields.y_field)
         # print(dataFields.modelType)
         # print(dataFields.modelName)
@@ -113,6 +130,29 @@ def modelNameSelection(request):
             context = polynomial.polynomial_graph(request)
 
             return render(request, 'graphs.html', context)
+
+        if modelName == "K-NN":
+            print('Inside KNN......')
+            context = knn.Knn_graph(request)
+
+            return render(request, 'graphs.html', context)
+
+        if modelName == "KernelSVM":
+            context = kernal_svm.Kernal_SVM_graph(request)
+
+            return render(request, 'graphs.html', context)
+        
+        if modelName == "NaiveBayes":
+            context = naive_bayes.Naive_Bayes_graph(request)
+
+            return render(request, 'graphs.html', context)
+        
+        if modelName == "SVM":
+            context = svm.SVM_graph(request)
+
+            return render(request, 'graphs.html', context)
+
+
 
         # if modelName == "SimpleLinear":
         #     SimpleLinear_graph()

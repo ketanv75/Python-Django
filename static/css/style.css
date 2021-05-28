@@ -162,7 +162,7 @@ body {
     cursor: pointer;
   }
 
-  .checkmark {
+.checkmark {
     top: 0.15rem;
     left: 0.1rem;
     display: inline-block;
@@ -182,7 +182,45 @@ body {
     border: 8px solid rgb(41, 39, 39);
     background-color: white;
   }
-  
+
+  .chkbox_container {
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.2rem;
+    color: rgb(230, 217, 217);
+    position: relative;
+    padding: .3rem .5rem .3rem 3rem;
+    margin-bottom: 1rem;
+}
+
+
+  .chkbox_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+
+  .chkboxkmark {
+    top: 0.15rem;
+    left: 0.1rem;
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    background-color: rgb(196, 197, 226);
+    position: absolute;
+  }
+
+  .chkbox_container:hover {
+    background-color: rgba(44, 74, 243, 0.7);
+    border-radius: 0.5rem;
+  }
+
+  .chkbox_container input:checked ~ .chkboxkmark {
+    border: 8px solid rgb(41, 39, 39);
+    background-color: white;
+  }
+
+
   .graph_container_row {
     display: flex;
     align-items: center;

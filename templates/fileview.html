@@ -11,10 +11,10 @@
         <h2 class="page_head-small">File content</h2>
         <div class="table_disp">{{ dataframe.to_html | safe }}</div>
 
-        <h2 class="page_head-small">Please select dependent variable</h2>
-
         <form class="flex_prop" enctype = "multipart/form-data" action = "fieldSelection" method = "POST">
             {% csrf_token %}
+            <h2 class="page_head-small">Please select dependent variable</h2>
+
             <div class="f_list">
                 {% for header in headers %}
                     <label for="{{header}}" class="radio_container">{{ header}}
@@ -23,6 +23,18 @@
                     </label>
                 {% endfor %}
             </div>
+
+            <h2 class="page_head-small">Please select independent variables</h2>
+            
+            <div class="f_list">
+                {% for header in headers %}
+                    <label for="{{header}}_chk"class="chkbox_container">{{ header}}
+                        <input type="checkbox" id="{{ header }}_chk" name="chkbox" value="{{ header }}">
+                        <span  class="chkboxkmark"></span>
+                    </label>
+                {% endfor %}
+            </div>
+
             <input class="btn btn-small" type="submit" value="submit">
         </form>
 

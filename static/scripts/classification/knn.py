@@ -12,6 +12,8 @@ def knn():
 
     # Importing the dataset
 
+    print('Inside Knn function....................')
+
     temp_csv_file=os.getcwd() + "\\temp_files\\tempcsv.csv"
     dataset = pd.read_csv(temp_csv_file)
 
@@ -91,6 +93,7 @@ def knn():
 ## Function to print the Graph ##
 def Knn_graph(request):
 
+    print('Inside Knn_graph function')
     pred_values = knn()
 
     # X = pred_values['X'][:,0].tolist()
@@ -106,6 +109,8 @@ def Knn_graph(request):
     # y_set = pred_values['y_set']
     # X_set = pred_values['X_set']
     cm = pred_values['cm']
+
+    print('CM = ', cm)
 
     cm1 = cm[0,0]
     cm2 = cm[0,1]
