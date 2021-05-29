@@ -234,3 +234,22 @@ body {
     flex-direction: column;
     margin: 1rem;
   }
+
+  .matrix_container{
+    display: flex;
+    margin: 0 -1rem;
+    justify-content: center;
+  }
+
+  .item_matrix{
+    text-align: center;
+    width: 8rem;
+    height: 8rem;
+    font-size: 3rem;
+    font-weight: bold;
+    color: white;
+    margin: 0 .5rem; 
+    padding-top: 2rem;
+    border: .2rem solid white;
+    background-color: #e01818;
+  }

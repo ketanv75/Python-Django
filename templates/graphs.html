@@ -74,5 +74,26 @@
         {% endif %}
 
     {% endif %}
+
+    {% if modelType == "Classification" %}
+        <div class ="graph_container_col">
+            <div class="graph_container_row">
+                <div class="matrix_container">
+                    <div class="item_matrix">{{ cm1 }}</div>
+                    <div class="item_matrix">{{ cm2 }}</div>
+                </div>
+            </div>
+
+            <div class="graph_container_row">
+                <div class="matrix_container">
+                    <div class="item_matrix">{{ cm3 }}</div>
+                    <div class="item_matrix">{{ cm4 }}</div>
+                </div>
+            </div>
+            
+        </div>
+
+    {% endif %}
+
 </div>
 {% endblock content %}
